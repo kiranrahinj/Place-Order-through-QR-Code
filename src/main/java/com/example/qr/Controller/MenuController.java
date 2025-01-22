@@ -49,7 +49,7 @@ public class MenuController {
     public ResponseEntity<byte[]> generateQRCode(@RequestParam String tableNumber) throws WriterException, IOException {
         List<MenuItem> menuItems = menuService.getAllMenuItems();
         String menuData = menuItems.stream().map(MenuItem::getName).collect(Collectors.joining(", "));
-
+        System.out.println(menuData);
         String qrData = String.format("Table Number: %s\nMenu: %s", tableNumber, menuData);
 
         byte[] qrCodeImage = qrCodeService.generateQRCode(qrData, 300, 300);
